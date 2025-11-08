@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Pixel Paradise</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23c4a7ff'/><text x='50' y='50' font-size='50' text-anchor='middle' dominant-baseline='central' fill='white' font-family='Arial, sans-serif' font-weight='bold'>NN</text></svg>">
     <style>
         * {
             margin: 0;
@@ -14,7 +15,7 @@
 
         body {
             font-family: 'Press Start 2P', cursive;
-            background: linear-gradient(135deg, #ffd1dc 0%, #e0bbff 50%, #b4e4ff 100%);
+            background: linear-gradient(135deg, #e0f7e0 0%, #c4a7ff 50%, #b4e4ff 100%);
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
@@ -29,7 +30,7 @@
             text-align: center;
             padding: 40px 20px;
             background: rgba(255, 255, 255, 0.3);
-            border: 4px solid #ffb3d9;
+            border: 4px solid #c4a7ff;
             border-radius: 20px;
             margin-bottom: 30px;
             position: relative;
@@ -44,8 +45,8 @@
 
         h1 {
             font-size: 2em;
-            color: #ff69b4;
-            text-shadow: 3px 3px 0px #ffb3d9;
+            color: #7b68ee;
+            text-shadow: 3px 3px 0px #c4a7ff;
             margin-bottom: 15px;
             position: relative;
             z-index: 1;
@@ -53,13 +54,13 @@
 
         .subtitle {
             font-size: 0.6em;
-            color: #9370db;
+            color: #5ab9ea;
             margin-top: 10px;
         }
 
         .bio-section {
             background: rgba(255, 255, 255, 0.5);
-            border: 4px solid #c4a7ff;
+            border: 4px solid #a8d8a8;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
@@ -69,7 +70,7 @@
         }
 
         .bio-section h2 {
-            color: #9370db;
+            color: #6ba36b;
             font-size: 1.2em;
             margin-bottom: 20px;
             text-align: center;
@@ -83,8 +84,8 @@
         }
 
         .link-button {
-            background: linear-gradient(135deg, #ffd1dc, #ffb3d9);
-            border: 4px solid #ff69b4;
+            background: linear-gradient(135deg, #c4a7ff, #b4e4ff);
+            border: 4px solid #9370db;
             border-radius: 10px;
             padding: 20px;
             text-align: center;
@@ -99,7 +100,7 @@
 
         .link-button:hover {
             transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
         }
 
         .link-button:active {
@@ -108,48 +109,115 @@
 
         .interactive-zone {
             background: rgba(255, 255, 255, 0.4);
-            border: 4px solid #b4e4ff;
+            border: 4px solid #f0e68c;
             border-radius: 15px;
             padding: 30px;
             text-align: center;
         }
 
         .interactive-zone h2 {
-            color: #5ab9ea;
+            color: #d4af37;
             font-size: 1em;
             margin-bottom: 20px;
         }
 
-        .pixel-button {
-            background: #ffb3d9;
-            border: 4px solid #ff69b4;
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-button {
+            background: #f0e68c;
+            border: 4px solid #d4af37;
+            color: #5a5a5a;
+            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.6em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .game-button:hover {
+            background: #d4af37;
             color: white;
-            padding: 15px 30px;
+            transform: translateY(-3px);
+        }
+
+        .game-button:active {
+            transform: translateY(0);
+        }
+
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-content {
+            background: linear-gradient(135deg, #e0f7e0, #f0e68c);
+            border: 6px solid #9370db;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .popup-content h3 {
+            color: #7b68ee;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .popup-content p {
+            color: #5a5a5a;
+            font-size: 0.7em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .close-button {
+            background: #9370db;
+            border: 4px solid #7b68ee;
+            color: white;
+            padding: 12px 25px;
             font-family: 'Press Start 2P', cursive;
             font-size: 0.7em;
             cursor: pointer;
             border-radius: 8px;
-            margin: 10px;
-            transition: all 0.2s;
+            display: block;
+            margin: 0 auto;
         }
 
-        .pixel-button:hover {
-            background: #ff69b4;
-            transform: translateY(-3px);
-        }
-
-        .pixel-button:active {
-            transform: translateY(0);
-        }
-
-        #message-display {
-            margin-top: 20px;
-            font-size: 0.7em;
-            color: #9370db;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .close-button:hover {
+            background: #7b68ee;
         }
 
         .floating-shape {
@@ -169,17 +237,6 @@
         .star {
             font-size: 2em;
             opacity: 0.3;
-        }
-
-        .counter {
-            display: inline-block;
-            background: #fff;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: 3px solid #ffb3d9;
-            margin: 10px;
-            font-size: 0.8em;
-            color: #ff69b4;
         }
     </style>
 </head>
@@ -203,8 +260,7 @@
                 with people who share similar interests!
             </p>
             <p style="margin-top: 15px;">
-                Feel free to explore my links below and don't forget to interact with the fun 
-                buttons at the bottom! ✨
+                Feel free to explore my links below and don't forget to try out the mini games! ✨
             </p>
         </section>
 
@@ -218,63 +274,84 @@
         </section>
 
         <section class="interactive-zone">
-            <h2>✨ Interactive Fun Zone ✨</h2>
-            <button class="pixel-button" id="surprise-btn">Surprise Me!</button>
-            <button class="pixel-button" id="color-btn">Change Colors</button>
-            <div class="counter">
-                Clicks: <span id="click-count">0</span>
+            <h2>✨ Mini Games Zone ✨</h2>
+            <div class="games-grid">
+                <button class="game-button" onclick="openGame('snake')">🐍 Snake</button>
+                <button class="game-button" onclick="openGame('memory')">🃏 Memory</button>
+                <button class="game-button" onclick="openGame('pong')">🏓 Pong</button>
+                <button class="game-button" onclick="openGame('tetris')">🧱 Tetris</button>
             </div>
-            <div id="message-display"></div>
         </section>
     </div>
 
+    <!-- Popup Overlay -->
+    <div class="popup-overlay" id="gamePopup">
+        <div class="popup-content">
+            <h3 id="gameTitle">Game Title</h3>
+            <p id="gameDescription">Game coming soon!</p>
+            <button class="close-button" onclick="closeGame()">Close</button>
+        </div>
+    </div>
+
     <script>
-        let clickCount = 0;
-        const messages = [
-            "You're awesome! ✨",
-            "Keep clicking! 🌟",
-            "You found a secret message! 💖",
-            "Pixel power activated! ⚡",
-            "Having fun yet? 🎮",
-            "You're a clicking champion! 🏆",
-            "Pastel vibes forever! 🌈",
-            "One more click? 😊"
-        ];
+        // Game data
+        const games = {
+            snake: {
+                title: '🐍 Snake Game',
+                description: 'Classic snake game where you eat food and grow longer. Don\'t hit the walls or yourself!'
+            },
+            memory: {
+                title: '🃏 Memory Match',
+                description: 'Flip cards and find matching pairs. Test your memory skills!'
+            },
+            pong: {
+                title: '🏓 Pong',
+                description: 'Classic arcade pong game. Bounce the ball and score points!'
+            },
+            tetris: {
+                title: '🧱 Tetris',
+                description: 'Arrange falling blocks to clear lines. A timeless puzzle game!'
+            }
+        };
 
-        const colors = [
-            ['#ffd1dc', '#e0bbff', '#b4e4ff'],
-            ['#ffe4e1', '#e6e6fa', '#f0e68c'],
-            ['#ffdab9', '#e0bbe4', '#d4f1f4'],
-            ['#fffacd', '#ffd1dc', '#e0f7fa']
-        ];
+        // Open game popup
+        function openGame(gameName) {
+            const popup = document.getElementById('gamePopup');
+            const title = document.getElementById('gameTitle');
+            const description = document.getElementById('gameDescription');
+            
+            if (games[gameName]) {
+                title.textContent = games[gameName].title;
+                description.textContent = games[gameName].description;
+                popup.classList.add('active');
+                
+                // TODO: Implement actual game logic here
+                // Each game should be in a separate module/file:
+                // - snake.js
+                // - memory.js
+                // - pong.js
+                // - tetris.js
+                console.log(`TODO: Load and initialize ${gameName} game`);
+            }
+        }
 
-        document.getElementById('surprise-btn').addEventListener('click', function() {
-            clickCount++;
-            document.getElementById('click-count').textContent = clickCount;
+        // Close game popup
+        function closeGame() {
+            const popup = document.getElementById('gamePopup');
+            popup.classList.remove('active');
             
-            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-            document.getElementById('message-display').textContent = randomMessage;
-            
-            // Create a floating emoji
-            const emoji = document.createElement('div');
-            emoji.textContent = ['💖', '✨', '🌟', '💫', '🎀'][Math.floor(Math.random() * 5)];
-            emoji.style.position = 'fixed';
-            emoji.style.left = Math.random() * window.innerWidth + 'px';
-            emoji.style.top = '100%';
-            emoji.style.fontSize = '2em';
-            emoji.style.animation = 'floatUp 3s ease-out forwards';
-            emoji.style.pointerEvents = 'none';
-            document.body.appendChild(emoji);
-            
-            setTimeout(() => emoji.remove(), 3000);
+            // TODO: Clean up game state and stop any running game loops
+            console.log('TODO: Clean up game resources');
+        }
+
+        // Close popup when clicking outside
+        document.getElementById('gamePopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeGame();
+            }
         });
 
-        document.getElementById('color-btn').addEventListener('click', function() {
-            const randomColors = colors[Math.floor(Math.random() * colors.length)];
-            document.body.style.background = `linear-gradient(135deg, ${randomColors[0]} 0%, ${randomColors[1]} 50%, ${randomColors[2]} 100%)`;
-        });
-
-        // Add float up animation
+        // Floating emoji animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes floatUp {
