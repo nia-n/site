@@ -2,6 +2,9 @@ body {
     background-color: #204b20;
     color:#ffd0f6;
 }
+textPath {
+    white-space: pre;i
+}
 p {
     margin-block-start: 0;
     padding-inline: 2ch;
