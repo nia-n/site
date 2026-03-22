@@ -1,367 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Pixel Paradise</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23c4a7ff'/><text x='50' y='50' font-size='50' text-anchor='middle' dominant-baseline='central' fill='white' font-family='Arial, sans-serif' font-weight='bold'>NN</text></svg>">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background: linear-gradient(135deg, #e0f7e0 0%, #c4a7ff 50%, #b4e4ff 100%);
-            min-height: 100vh;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 4px solid #c4a7ff;
-            border-radius: 20px;
-            margin-bottom: 30px;
-            position: relative;
-            overflow: hidden;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        h1 {
-            font-size: 2em;
-            color: #7b68ee;
-            text-shadow: 3px 3px 0px #c4a7ff;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .subtitle {
-            font-size: 0.6em;
-            color: #5ab9ea;
-            margin-top: 10px;
-        }
-
-        .bio-section {
-            background: rgba(255, 255, 255, 0.5);
-            border: 4px solid #a8d8a8;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            line-height: 1.8;
-            font-size: 0.7em;
-            color: #5a5a5a;
-        }
-
-        .bio-section h2 {
-            color: #6ba36b;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .links-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .link-button {
-            background: linear-gradient(135deg, #c4a7ff, #b4e4ff);
-            border: 4px solid #9370db;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-            font-size: 0.6em;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-button:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 8px 20px rgba(147, 112, 219, 0.4);
-        }
-
-        .link-button:active {
-            transform: scale(0.95);
-        }
-
-        .interactive-zone {
-            background: rgba(255, 255, 255, 0.4);
-            border: 4px solid #f0e68c;
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .interactive-zone h2 {
-            color: #d4af37;
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .game-button {
-            background: #f0e68c;
-            border: 4px solid #d4af37;
-            color: #5a5a5a;
-            padding: 15px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.6em;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-
-        .game-button:hover {
-            background: #d4af37;
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .game-button:active {
-            transform: translateY(0);
-        }
-
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-overlay.active {
-            display: flex;
-        }
-
-        .popup-content {
-            background: linear-gradient(135deg, #e0f7e0, #f0e68c);
-            border: 6px solid #9370db;
-            border-radius: 20px;
-            padding: 40px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            animation: popIn 0.3s ease-out;
-        }
-
-        @keyframes popIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .popup-content h3 {
-            color: #7b68ee;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .popup-content p {
-            color: #5a5a5a;
-            font-size: 0.7em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .close-button {
-            background: #9370db;
-            border: 4px solid #7b68ee;
-            color: white;
-            padding: 12px 25px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 0.7em;
-            cursor: pointer;
-            border-radius: 8px;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .close-button:hover {
-            background: #7b68ee;
-        }
-
-        .floating-shape {
-            position: fixed;
-            pointer-events: none;
-            animation: floatAround 20s infinite ease-in-out;
-            z-index: 0;
-        }
-
-        @keyframes floatAround {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(50px, 50px) rotate(90deg); }
-            50% { transform: translate(-30px, 100px) rotate(180deg); }
-            75% { transform: translate(-80px, -50px) rotate(270deg); }
-        }
-
-        .star {
-            font-size: 2em;
-            opacity: 0.3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Nia Nasiri</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none'><rect width='100' height='100' /><text x='50' y='50' font-size='50' text-anchor='middle' dominant-baseline='central' fill='%23204b20' font-family='Arial, sans-serif' font-weight='bold'>NN</text></svg>">
 </head>
+
 <body>
-    <div class="floating-shape star" style="top: 10%; left: 10%;">✨</div>
-    <div class="floating-shape star" style="top: 70%; left: 80%; animation-delay: 5s;">⭐</div>
-    <div class="floating-shape star" style="top: 40%; left: 90%; animation-delay: 10s;">💫</div>
+    <!-- <svg viewBox="0 0 1 1" width="0" height="0">
+        <clipPath id="myClip" clipPathUnits="objectBoundingBox">
+            <path
+                d="m 0.73565394,0.11051392 c 0.0769275,0.0455702 0.15268939,0.0900289 0.20106071,0.15449392 0.048371,0.0644652 0.0693513,0.14893653 0.0617751,0.23007374 -0.006992,0.0805815 -0.043126,0.1567167 -0.094994,0.21562445 C 0.85162786,0.76961379 0.78402526,0.81129407 0.71467395,0.86353284 0.64532265,0.91521602 0.57364001,0.97801367 0.49205061,0.99524152 0.41046082,1.011913 0.31838088,0.98357033 0.25310916,0.9291092 0.18783717,0.87464761 0.14879057,0.79517773 0.09983674,0.71904224 0.05146569,0.64290678 -0.00739542,0.57121704 7.6339754e-4,0.50341768 0.00833962,0.43561808 0.08293602,0.37226447 0.13014141,0.2939059 c 0.0472056,-0.0783583 0.067603,-0.17172159 0.12529853,-0.22785071 0.0571129,-0.0566848 0.15210672,-0.0755797 0.23894149,-0.0616864 0.086252,0.0138934 0.16434486,0.060575 0.24127251,0.10614513 z">
+            </path>
+        </clipPath>
+    </svg> -->
 
-    <div class="container">
-        <header>
-            <h1>YOUR NAME HERE</h1>
-            <p class="subtitle">✦ welcome to my pixel paradise ✦</p>
-        </header>
+    <svg id="coolblob" preserveAspectRatio="xMidYMid meet" viewBox="0 0 500 500">
+        <path id="curve"
+            d="m 0.73565394,0.11051392 c 0.0769275,0.0455702 0.15268939,0.0900289 0.20106071,0.15449392 0.048371,0.0644652 0.0693513,0.14893653 0.0617751,0.23007374 -0.006992,0.0805815 -0.043126,0.1567167 -0.094994,0.21562445 C 0.85162786,0.76961379 0.78402526,0.81129407 0.71467395,0.86353284 0.64532265,0.91521602 0.57364001,0.97801367 0.49205061,0.99524152 0.41046082,1.011913 0.31838088,0.98357033 0.25310916,0.9291092 0.18783717,0.87464761 0.14879057,0.79517773 0.09983674,0.71904224 0.05146569,0.64290678 -0.00739542,0.57121704 7.6339754e-4,0.50341768 0.00833962,0.43561808 0.08293602,0.37226447 0.13014141,0.2939059 c 0.0472056,-0.0783583 0.067603,-0.17172159 0.12529853,-0.22785071 0.0571129,-0.0566848 0.15210672,-0.0755797 0.23894149,-0.0616864 0.086252,0.0138934 0.16434486,0.060575 0.24127251,0.10614513 z"
+            transform="translate(100 100) scale(300)"
+            fill="none">
+        </path>
+        <clipPath id="myClip">
+            <use href="#curve" transform="scale(0.9)" transform-origin="50%"/>
+        </clipPath>
+        <image href="me.jpg" clip-path="url(#myClip)"  x="90" y="100" width="300" height="300" preserveAspectRatio="xMidYMid slice"></image>
+        
+        <text width="1000px" class="namefont" xml:space="preserve">
+            <textPath id="baby" href="#curve">nia   nasiri  ✦  nia   nasiri  ✦  nia   nasiri  ✦  
+                <animate attributeName="startOffset" from="0%" to ="400%" begin="0s" dur="120s" repeatCount="1" fill="freeze"/>
+            </textPath>
+        </text>
+        <text width="1000px" class="namefont" xml:space="preserve">
+            <textPath id="baby" href="#curve">nia   nasiri  ✦  nia   nasiri  ✦  nia   nasiri  ✦  
+                <animate attributeName="startOffset" from="-200%" to ="200%" begin="0s" dur="120s" repeatCount="indefinite"/>
+            </textPath>
+        </text>
+        <text width="1000px" class="namefont" xml:space="preserve">
+            <textPath id="baby" href="#curve">nia   nasiri  ✦  nia   nasiri  ✦  nia   nasiri  ✦  
+                <animate attributeName="startOffset" from="-100%" to ="300%" begin="0s" dur="120s" repeatCount="indefinite"/>
+            </textPath>
+        </text>
+        <text width="1000px" class="namefont" xml:space="preserve">
+            <textPath id="baby" href="#curve" startOffset="-200%">nia   nasiri  ✦  nia   nasiri  ✦  nia   nasiri  ✦  
+                <animate attributeName="startOffset" from="-200%" to ="200%" begin="60s" dur="120s" repeatCount="indefinite"/>
+            </textPath>
+        </text>
+        <text width="1000px" class="namefont" xml:space="preserve">
+            <textPath id="baby" href="#curve" startOffset="-100%">nia   nasiri  ✦  nia   nasiri  ✦  nia   nasiri  ✦  
+                <animate attributeName="startOffset" from="-100%" to ="300%" begin="60s" dur="120s" repeatCount="indefinite"/>
+            </textPath>
+        </text>
+    </svg>
+    
+    <p>I'm a software engineer living in San Francisco. I currently work on AI infrastructure at Google. I enjoy cooking, reading, and walking up Twin Peaks just
+        before the sun sets.
+    </p>
+    <p><a href="https://www.linkedin.com/in/nia-nasiri">LinkedIn</a></p>
+    
+    <!-- todo: linkedin, hobbies? picture -->
 
-        <section class="bio-section">
-            <h2>About Me</h2>
-            <p>
-                Hey there! I'm a [your profession/passion] who loves [interest 1], [interest 2], 
-                and [interest 3]. When I'm not [main activity], you can find me [hobby] or 
-                exploring [another interest]. I believe in [personal value] and love connecting 
-                with people who share similar interests!
-            </p>
-            <p style="margin-top: 15px;">
-                Feel free to explore my links below and don't forget to try out the mini games! ✨
-            </p>
-        </section>
-
-        <section class="links-section">
-            <a href="#" class="link-button">🎮 Portfolio</a>
-            <a href="#" class="link-button">💌 Email Me</a>
-            <a href="#" class="link-button">🐦 Twitter</a>
-            <a href="#" class="link-button">📷 Instagram</a>
-            <a href="#" class="link-button">💼 LinkedIn</a>
-            <a href="#" class="link-button">🎨 GitHub</a>
-        </section>
-
-        <section class="interactive-zone">
-            <h2>✨ Mini Games Zone ✨</h2>
-            <div class="games-grid">
-                <button class="game-button" onclick="openGame('snake')">🐍 Snake</button>
-                <button class="game-button" onclick="openGame('memory')">🃏 Memory</button>
-                <button class="game-button" onclick="openGame('pong')">🏓 Pong</button>
-                <button class="game-button" onclick="openGame('tetris')">🧱 Tetris</button>
-            </div>
-        </section>
-    </div>
-
-    <!-- Popup Overlay -->
-    <div class="popup-overlay" id="gamePopup">
-        <div class="popup-content">
-            <h3 id="gameTitle">Game Title</h3>
-            <p id="gameDescription">Game coming soon!</p>
-            <button class="close-button" onclick="closeGame()">Close</button>
-        </div>
-    </div>
-
-    <script>
-        // Game data
-        const games = {
-            snake: {
-                title: '🐍 Snake Game',
-                description: 'Classic snake game where you eat food and grow longer. Don\'t hit the walls or yourself!'
-            },
-            memory: {
-                title: '🃏 Memory Match',
-                description: 'Flip cards and find matching pairs. Test your memory skills!'
-            },
-            pong: {
-                title: '🏓 Pong',
-                description: 'Classic arcade pong game. Bounce the ball and score points!'
-            },
-            tetris: {
-                title: '🧱 Tetris',
-                description: 'Arrange falling blocks to clear lines. A timeless puzzle game!'
-            }
-        };
-
-        // Open game popup
-        function openGame(gameName) {
-            const popup = document.getElementById('gamePopup');
-            const title = document.getElementById('gameTitle');
-            const description = document.getElementById('gameDescription');
-            
-            if (games[gameName]) {
-                title.textContent = games[gameName].title;
-                description.textContent = games[gameName].description;
-                popup.classList.add('active');
-                
-                // TODO: Implement actual game logic here
-                // Each game should be in a separate module/file:
-                // - snake.js
-                // - memory.js
-                // - pong.js
-                // - tetris.js
-                console.log(`TODO: Load and initialize ${gameName} game`);
-            }
-        }
-
-        // Close game popup
-        function closeGame() {
-            const popup = document.getElementById('gamePopup');
-            popup.classList.remove('active');
-            
-            // TODO: Clean up game state and stop any running game loops
-            console.log('TODO: Clean up game resources');
-        }
-
-        // Close popup when clicking outside
-        document.getElementById('gamePopup').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeGame();
-            }
-        });
-
-        // Floating emoji animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes floatUp {
-                to {
-                    transform: translateY(-100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
+
 </html>
